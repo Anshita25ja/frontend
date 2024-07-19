@@ -7,9 +7,10 @@ import steveJobs from "../assets/Images/steveJobs.jpg";
 import HomeLayout from "../Layout/HomeLayout.jsx";
 
 const AboutUs = () => {
+ 
   return (
     <HomeLayout>
-      <div className="pl-20 pt-10 pb- flex flex-col text-white bg-gray-800">
+      <div className="h-screen pl-20 pt-10 pb- flex flex-col text-white bg-gray-800">
         {/* creating the about page main section */}
         <div className="flex items-center gap-5 mx-10">
           {/* out moto section */}
