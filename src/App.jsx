@@ -1,13 +1,15 @@
-import './App.css'
 
-import Footer from './Components/Footer.jsx'
+import { Route,Routes } from "react-router-dom"
 
-// import {Routes} from 'react-router-dom'
+import Homepages from "../src/Pages/HomePages.jsx"
+
 const App = () => {
   return (
-    <>
-     <Footer/>
-    </>
+
+    <Routes>
+      <Route  path="/" element={<Homepages/>}/>
+    </Routes>
+    
   )
 }
 

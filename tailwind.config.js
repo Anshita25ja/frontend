@@ -1,8 +1,10 @@
+/* eslint-disable no-undef */
+
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html","./src/**/*.{html,js,jsx,ts,tsx}"],
+export default{
+  content: ["./index.html","./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
-  plugins: [],
-}
+  plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
+};
