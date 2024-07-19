@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import homePageMainImage from "../assets/Images/homePageMainImage.jpg";
 import HomeLayout from "../Layout/HomeLayout";
 
 
@@ -33,7 +34,9 @@ const Homepages = () => {
           </div>
         </div>
 
-       
+        <div className="w-1/2 h-1/2 flex items-center justify-center">
+          <img src={homePageMainImage} alt="home page image" />
+        </div>
       </div>
       </HomeLayout>
   );
