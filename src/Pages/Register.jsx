@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import { BsPersonCircle } from "react-icons/bs";
 import {Link, useNavigate } from "react-router-dom";
 
 import HomeLayout from "../Layout/HomeLayout.jsx";
@@ -12,20 +13,41 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [previewImage, setImagePreview] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const navigate = useNavigate();
 
   // form function
+  const getImage = (event) => {
+    event.preventDefault();
+    // getting the image
+    const uploadedImage = event.target.files[0];
+
+    // if image exists then getting the url link of it
+    if (uploadedImage) {
+      
+        setAvatar(uploadedImage);
+      
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(uploadedImage);
+      fileReader.addEventListener("load", function () {
+        setImagePreview(this.result);
+      });
+    }
+  };
+
   const handleSubmit = async (e) => {
     console.log(name,email,password,phone,address)
+    
     e.preventDefault();
     try {
       const res = await axios.post(`http://localhost:8081/api/v1/auth/register`, {
        name,
         email,
         password,
-        phone,address
-    
+        phone,address,avatar
+  
       });
       if (res && res.data.success) {
      
@@ -46,7 +68,29 @@ const Register = () => {
           className="flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]"
         >
           <h1 className="text-center text-2xl font-bold">Registration Page</h1>
-
+          <label className="cursor-pointer" htmlFor="image_uploads">
+            {previewImage ? (
+              <img
+                className="w-24 h-24 rounded-full m-auto"
+                src={previewImage}
+                alt="preview image"
+              />
+            ) : (
+              <BsPersonCircle className="w-24 h-24 rounded-full m-auto" />
+            )}
+          </label>
+          <input
+            onChange={getImage}
+            className="hidden"
+            type="file"
+            id="image_uploads"
+            name="image_uploads"
+            accept=".jpg, .jpeg, .png"
+          />
+         
+         
+         
+         
           <div className="flex flex-col gap-1">
             <label className="font-semibold" htmlFor="password">
               Name
